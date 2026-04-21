@@ -3,7 +3,7 @@
 **Student ID:** 20241400  
 **Module:** Client-Server Architectures (5COSC022W)
 
-This is a REST API for the Smart Campus project. It lets you manage rooms on campus and the sensors inside them. Sensors can record readings like temperature or CO2 levels. Everything is stored in memory using HashMaps — no database.
+This is a REST API for the Smart Campus project. It lets you manage rooms on campus and the sensors inside them. Sensors can record readings like temperature or CO2 levels. Everything is stored in memory using HashMaps with no database.
 
 Built with Java 17, JAX-RS (Jersey), and a Grizzly embedded server.
 
