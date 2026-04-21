@@ -62,6 +62,31 @@ curl -X POST http://localhost:8080/api/v1/sensors/TEMP-001/readings \
 
 # 7. Get readings
 curl http://localhost:8080/api/v1/sensors/TEMP-001/readings
+
+# 8. Try creating sensor with non-existent room (422 Unprocessable Entity)
+curl -X POST http://localhost:8080/api/v1/sensors \
+  -H "Content-Type: application/json" \
+  -d '{"id":"BAD-1","type":"CO2","status":"ACTIVE","roomId":"NOPE"}'
+
+# 9. Delete room with sensors (409 Conflict)
+curl -X DELETE http://localhost:8080/api/v1/rooms/LIB-301
+
+# 10. Create maintenance sensor (readings blocked)
+curl -X POST http://localhost:8080/api/v1/sensors \
+  -H "Content-Type: application/json" \
+  -d '{"id":"TEMP-002","type":"Temperature","status":"MAINTENANCE","roomId":"LIB-301"}'
+
+curl -X POST http://localhost:8080/api/v1/sensors/TEMP-002/readings \
+  -H "Content-Type: application/json" \
+  -d '{"value":20.0}'
+
+# 11. Idempotent DELETE (same result every time)
+curl -X POST http://localhost:8080/api/v1/rooms \
+  -H "Content-Type: application/json" \
+  -d '{"id":"LAB-201","name":"Lab","capacity":30}'
+
+curl -X DELETE http://localhost:8080/api/v1/rooms/LAB-201
+curl -X DELETE http://localhost:8080/api/v1/rooms/LAB-201
 ```
 
 ---
