@@ -1,4 +1,4 @@
-# Smart Campus API
+**# Smart Campus API
 
 **Student ID:** 20241400  
 **Module:** Client-Server Architectures (5COSC022W)
@@ -115,3 +115,4 @@ If an API returns a raw Java stack trace to the user, it leaks a lot of informat
 **Why filters are better than manual logging**
 
 I used a JAX-RS filter class that implements `ContainerRequestFilter` and `ContainerResponseFilter`. This automatically logs every incoming request and every outgoing response in one place. The alternative would be adding `Logger.info()` calls inside every single resource method, which is tedious and easy to forget. With the filter approach, all logging happens in one class and resource methods can focus on the actual business logic.
+**
